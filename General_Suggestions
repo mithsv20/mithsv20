@@ -1,0 +1,133 @@
+==================StringUtils method to check null=============
+StringUtils.isNoneBlank(id,devices) && StringUtils.isNoneEmpty(id,devices)) 
+
+===========command to set timestamp according to US in file directory=====
+touch -t 1812071218.00 /home/mithlesh/CONSOLE_SINK85
+
+============to enable network control==========
+nm-applet --enable
+
+================to show the wifi icon on ubuntu============
+nohup nm-applet &
+
+===============to up-tomcat =================
+create jar
+pwdx $(pidof java)
+nohup sh bin/catalina.sh run > terminal.log &
+tailf terminal.log 
+
+===========command to trigger flow on pulse production===========
+java -cp .:/home/dbuser/mithlesh/SparkTrigger/lib/* com.inn.spark.TriggerSparkJob /home/dbuser/mithlesh/SparkTrigger/xml/Streaming.xml /usr/hdp/current/spark2-client/ Streaming /home/dbuser/mithlesh/SparkTrigger/spark-runner-1.0.jar com.inn.sparkrunner.execute.WorkflowExecuteFromXMLFile yarn 650m 650m 1 4 trunk cluster /home/dbuser/mithlesh/SparkTrigger/spark-runner-udf-1.0.jar hdfs://rm.server1.com:8020 /user/sparkflow/ > /home/dbuser/pulse/SparkTrigger/logs/Streaming.log &
+
+===============to set JAVA_HOME=========================================
+sudo vi /etc/profile
+
+echo $JAVA_HOME
+echo $PATH
+vi ~/.bashrc 
+source ~/.bashrc
+
+In bashrc:
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+export TOMCAT_HOME=/var/lib/tomcat7
+export CATALINA_HOME=$PATH:$TOMCAT_HOME
+
+sudo service tomcat7 stop
+/etc/init.d/tomcat7 stop
+/etc/init.d/tomcat7 start
+
+sudo systemctl stop apache2
+sudo systemctl status apache2
+sudo systemctl status apache2
+
+=================for nifi kylo services=======================
+
+cd /home/ist/PROCESS_RUNNER_SETUP/process-monitor
+./start-process-monitor-services.sh
+
+cd /home/ist/PROCESS_RUNNER_SETUP/process-designer
+./start-process-designer.sh
+
+cd /home/ist/PROCESS_RUNNER_SETUP/MQ-Service
+./start-mq-services.sh
+
+===============to start hbase===========================================
+go to :		/home/ist/Documents/downloads/hbase/hbase-1.2.2/bin
+type:		./start-hbase.sh
+type:		./hbase shell
+
+===============to change java version===================================
+sudo chown -R root:root /usr/lib/jvm/jdk1.7.0
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.7.0/bin/java 100
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.7.0/bin/java 200
+
+command: 	
+sudo update-alternatives --config java
+
+=================to change maven version==============================
+sudo update-alternatives --config mvn
+
+================= to install new version===============================
+sudo update-alternatives --install /usr/bin/mvn mvn /opt/maven/apache-maven-3.5.0/bin/mvn 100
+
+===============regex pattern match right corner string==================
+provide whole string as a result:		^.*PC$
+provide last pattern as a result:		PC$
+
+===========spark sql query for seconds to date==========================
+CAST(CAST(callEndTime AS long) AS timestamp) as creationtime
+to_timestamp(callEndTime/1000) as dateformat
+DATE_FORMAT(from_unixtime(callEndTime),'Y-MM-dd hh:mm:ss') as creationtime
+
+===========convert milisecond timestamp to date in string===============
+select DATE_FORMAT(from_unixtime(CAST(? AS SIGNED)/1000),'%Y-%m-%d %H:%i:%s') as sampledate from dual;
+
+===============for current date in our format===============
+select DATE_FORMAT(CURRENT_TIMESTAMP, '%d/%m/%Y') as date from Dual;
+select from_unixtime(1530882900000/1000,'%Y-%m-%d') from DUAL;
+
+===========maven dependancy for criteria builder========================
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-jpamodelgen</artifactId>
+    <version>1.0.0</version>
+</dependency>
+ 
+============to see nifi flow logs=======================================
+tail -f /var/log/nifi/nifi-app.log 
+
+============to change time of jar======================================
+touch -t 1812071218.00
+
+============to disable history logs===================================
+timedatectl set-ntp 0
+
+============ to round .2 decimal=========================================
+String.format("%.2f", value)
+
+========== bashrc edit===================================================
+. ~/.bashrc
+
+===========pl command===============================================================
+mvn clean install -pl foresight-nv -am -DskipTests=true
+
+==========find command=====================
+find -name 'config.properties'
+==========find text========================
+grep -rnw  src/ -e 'StringUtils.join'
+==========ssh rsa key view====================
+vi ~/.ssh/id_rsa.pub
+
+========= run jar using java command============================
+java -jar <jar-name>
+java -Dserver.port=8200 -jar <jar-name> 
+
+=========sonar update command================================
+mvn sonar:sonar -Dsonar.host.url=http://localhost:9001 -Dsonar.login=1cfd9ba1f2f72bcbc5c62c276cf783019983823b -Dsonar.language=java -Dsonar.scm.provider=git
+
+========run main in jar======================================
+java -cp decryption.jar com.inn.decryption.App 2fzaPlHVK5ADT5WHbu+5A2Yrhmt3PBggY5EgcREbjgc=
+
+======== get process by localhost port id======================
+sudo lsof -i -P -n | grep 9672
