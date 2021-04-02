@@ -1,0 +1,18 @@
+=======to check logs of job===============
+kubectl -n t003-u000005 logs -f batchjob-92480476e153335c-driver -c spark-kubernetes-driver
+
+=======to delete pods====================
+kubectl delete pods batchjob-596ce676dcf7fd0f-driver
+
+=======to copy inside pod====================
+kubectl cp spark-runner-test-1.0.jar spark-master-0://opt/bitnami/spark/examples/jars
+
+======to jump inside pods===================
+kubectl exec -it spark-master-0 bash
+
+======to describe pods details==============
+kubectl describe pod/batchjob-ad7fb075981632f0-driver -n t003-u000005
+
+======spark-submit using kubectl pods======
+./spark-submit --master local[*] --class com.inn.sparkinternal.custom.SparkAppMain /home/mithlesh/spark-internal-1.0.jar
+
