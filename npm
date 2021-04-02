@@ -1,0 +1,22 @@
+=====to build the project==================
+npm run build
+
+=====to install react-script===============
+npm install -g react-scripts
+
+=====to start server========================
+npm start
+
+
+=====create react-app=======================
+npx craate-react-app <app-name>
+
+=====install axios==========================
+npm -S i axios
+
+=====kill application on specific port======
+sudo kill -9 $(sudo lsof -t -i:8080)
+
+=====to add react dropzone=================-
+npm install --save react-dropzone
+
