@@ -1,3 +1,8 @@
+===============to start hbase===========================================
+go to :		/home/ist/Documents/downloads/hbase/hbase-1.2.2/bin
+type:		./start-hbase.sh
+type:		./hbase shell
+
 ===============create=============
 create 'student','r'
 
@@ -33,6 +38,4 @@ hbase org.apache.hadoop.hbase.mapreduce.Import "TableName" "/user/userapp/path"
 
 ==================export with timerange=================================================
 hbase org.apache.hadoop.hbase.mapreduce.Export -Dmapreduce.job.queuename='ingest'  'TableName' hdfs:///user/userapp/temp2/ 1000 1558433604633 1558434179173
-
-
 
