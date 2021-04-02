@@ -1,3 +1,22 @@
+#Git Personal
+
+create new repository on Github
+
+====to initialize git in your project=====
+git init 
+
+
+git add .
+git status
+git commit -m '<message>' 
+
+====to commit ==========
+git remote add origin git@github-mithsv20:MITHSV20/hello-world.git
+git push origin master
+
+=====kill application on specific port======
+sudo kill -9 $(sudo lsof -t -i:8080)
+
 ===diff when you get conflicts===========
 git mergetool -t meld -y
 
