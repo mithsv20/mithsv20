@@ -10,6 +10,9 @@ nm-applet --enable
 ================to show the wifi icon on ubuntu============
 nohup nm-applet &
 
+=====command to get https and http url=========
+./ngrok http 8080
+
 ===============to up-tomcat =================
 create jar
 pwdx $(pidof java)
