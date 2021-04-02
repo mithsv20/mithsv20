@@ -1,0 +1,67 @@
+===diff when you get conflicts===========
+git mergetool -t meld -y
+
+===to remove committed changes=============
+git reset --hard HEAD~1
+
+=====to unstage changes of abc.java file===================
+git reset HEAD abc.java
+git reset -- abc.java
+
+=====to stage changes=========
+git add abc.java
+
+===when u r in trouble===============
+git reset --hard
+
+===git meld tool open command=======
+git difftool e2e643aa3c617041b7ec54226c405ae188e513b0 origin/master
+
+====check committed changes===========
+git log -p -1
+git log --stat -M -14040
+
+====check committed changes list by hashcode===========
+git diff-tree --no-commit-id --name-only -r d68293e1d46bfdc08fa8f70a70fad0eec24d9e12
+
+====to comment changes==============
+git stash
+
+====to list commented changes======
+git stash list
+
+====to make & switch branch=========
+git checkout -b newDevBranch origin/dev
+
+===to delete branch====
+git branch -D newDevBranch
+
+===to merge changes from one to another branch=====(from commit hashcode branch to current branch)
+git cherry-pick b199c219627996c342cbf9dadc2c065bb6e97579
+
+===to difftool====================
+git difftool -d staging..master foresight-nv/src/main/java/com/inn/foresight/module/nv/feedback/
+
+===fetch url origin==================
+git config --get remote.origin.url
+
+===set url origin====================
+git remote set-url origin 	foresight_new/foresight_new
+
+===to take update===================
+git pull --rebase && git submodule sync && git submodule update --init --recursive && git submodule update --recursive --remote --rebase && mvn -T 2C -pl [child-module] --am clean -DskipTests=true -Dmaven.test.skip install -Denforcer.skip=true -fae
+
+git pull --rebase && git submodule sync && git submodule update --init --recursive && git submodule update --recursive --remote --rebase && mvn -T 2C -pl [child-module] --am clean -DskipTests=true -Dmaven.test.skip install -Denforcer.skip=true -fae
+
+===execute foreach on child==========
+git submodule foreach git checkout staging
+
+git rm -r --cached [module]
+
+git submodule update --init --recursive 
+
+git submodule update --recursive --remote
+
+===adding worktree of other branches=======
+git worktree add ../Staging staging
+git worktree add ../Dev dev
