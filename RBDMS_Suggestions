@@ -1,0 +1,5 @@
+=======increase group_concat_max_len limit=============
+SET SESSION group_concat_max_len=10000;
+SET GLOBAL group_concat_max_len=10000;
+SHOW VARIABLES LIKE '%group_concat%';
+
