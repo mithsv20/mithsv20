@@ -1,0 +1,38 @@
+give permission 400
+
+ssh -i key.pem ec2-user@public_aws_ip
+
+ssh -i Downloads/aws_instance.pem ec2-user@ec2-18-188-189-186.us-east-2.compute.amazonaws.com
+=======setup java in ec2==================
+check java version 
+java -version
+
+sudo su
+
+cd /usr
+sudo mkdir java
+
+====install wget==============
+yum install wget
+
+====install jdk8===============
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm"
+
+yum install jdk-8u141-linux-x64.rpm
+
+update-alternatives --config java
+
+====to kill running application=======
+sudo fuser -k 8080/tcp
+
+==install docker===============
+sudo yum install docker
+
+
+==vpc====
+vpc-b82682d3 | ap-northeast-2
+
+==domain====
+k8s-service.free	
+
+kops create cluster --cloud=aws --zones=ap-northeast-2 --name=

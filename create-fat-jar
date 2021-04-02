@@ -1,0 +1,81 @@
+Packaging the React app with Spring Boot
+-----------------------------------------
+We'd like to be able to publish one jar file to production, and that jar file should contain both the backend and the frontend. Spring Boot applications can serve static content if you put it into the classes/public directory of the application jar file. Create React App can build a static bundle for production by running npm build in the frontend directory.
+
+===add in package.json======
+  "proxy": "http://localhost:8080",
+
+===build npm and copy public folder to target/classes/=========
+npm run build
+  
+===add plugins to pom==========
+<plugin>
+    <groupId>com.github.eirslett</groupId>
+    <artifactId>frontend-maven-plugin</artifactId>
+    <version>1.6</version>
+    <configuration>
+        <workingDirectory>src/main/frontend</workingDirectory>
+        <installDirectory>target</installDirectory>
+    </configuration>
+    <executions>
+        <execution>
+            <id>install node and npm</id>
+            <goals>
+                <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+                <nodeVersion>v8.9.4</nodeVersion>
+                <npmVersion>5.6.0</npmVersion>
+            </configuration>
+        </execution>
+        <execution>
+            <id>npm install</id>
+            <goals>
+                <goal>npm</goal>
+            </goals>
+            <configuration>
+                <arguments>install</arguments>
+            </configuration>
+        </execution>
+        <execution>
+            <id>npm run build</id>
+            <goals>
+                <goal>npm</goal>
+            </goals>
+            <configuration>
+                <arguments>run build</arguments>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+
+======add ant plugin to copy npm build to target directory=======
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<configuration>
+							<target>
+								<copy todir="${project.build.directory}/classes/public">
+									<fileset dir="${project.basedir}/src/main/frontend/build"/>
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+========build maven after changes and see the results in target directory===
+jar tvf target/aws-s3bucket-read-write.jar | grep public
+
+
+=======we are ready=========================
+java -jar target/aws-s3bucket-read-write.jar
+
+======for more info========
+https://blogg.kantega.no/webapp-with-create-react-app-and-spring-boot/

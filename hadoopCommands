@@ -1,0 +1,33 @@
+====check hadoop version=====
+hadoop version 
+
+====check namenode format====
+hdfs namenode -format 
+
+===start dfs=======
+start-dfs.sh 
+
+===start-yarn=======
+start-yarn.sh
+
+===check running processes=====
+ps -aux | grep 'node'
+ps -aux | grep 'resource'
+jps
+
+stop-all.sh
+rm -rf /usr/local/hadoop_store/hdfs/datanode/*
+start-all.sh
+
+http://localhost:9870/
+
+====spark-submit command=========
+spark-submit --class com.scala.Main /home/ist/eclipse/scala-workspace/SparkBatchApp/target/SparkBatchApp-1.0.jar --master local --deploy-mode cluster --queue default
+
+====to start & stop history-server======
+$HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver
+$HADOOP_HOME/sbin/mr-jobhistory-daemon.sh stop historyserver
+http://localhost:19888/
+
+====yarn UI========
+localhost:8088

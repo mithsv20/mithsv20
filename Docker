@@ -1,0 +1,63 @@
+====create Dockerfile file inside project directory========
+FROM openjdk:8
+ADD target/aws-s3bucket-read-write.jar .
+EXPOSE 8085
+ENTRYPOINT ["java", "-jar", "aws-s3bucket-read-write.jar"]
+
+=====kill application on specific port======
+sudo kill -9 $(sudo lsof -t -i:8080)
+
+====run docker image===============================
+docker run -p 8085:8080 react-and-spring
+
+====will run the Dockerfile to create an image=====
+docker build -t <image_name> . 
+
+====will print all the available images============
+docker images 
+
+====will run a container with the image============
+docker run {IMAGE_ID} 
+
+====will print all the running containers==========
+docker ps 
+
+====will terminate the container===================
+docker kill {CONTAINER_ID} 
+
+====to see the docker logs=========================
+docker logs {CONTAINER_ID}
+
+====to push into docker hub========================
+docker tag react-and-spring mithsv20/react-and-spring
+docker push mithsv20/react-and-spring
+
+====elastic beantalk docker delpoyment json========
+{
+ "AWSEBDockerrunVersion": "1",
+ "Image": {
+  "Name": "338007655978.dkr.ecr.us-east-2.amazonaws.com/aws-s3bucket-read-write"
+ },
+ "Ports": [{
+  "ContainerPort": "8080"
+ }]
+}
+
+++++++++++++++++++++++++++++++++++++++
+Docker Image
+When we have an application that we want to deploy, we can package it into a Docker Image. The image contains all of your code and dependencies.
+
+Docker Container
+A Docker Container is an ephemeral running instance of a Docker Image.
+
+Dockerfile
+A Dockerfile defines the steps to create a Docker Image.
+
+=========================
+systemctl status docker
+
+systemctl enable docker
+
+systemctl start docker
+
+docker load -i sonarqube-8.tar
