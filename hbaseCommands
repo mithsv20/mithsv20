@@ -16,19 +16,19 @@ delete 'student','rowKey','r:name'
 put 'student','rowey','r:city','indore'
 
 ===============create===============
-create 'NVSpeedTest' , 'r',  COMPRESSION => 'SNAPPY' , SPLITS =>['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50']
+create 'student' , 'r',  COMPRESSION => 'SNAPPY' , SPLITS =>['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50']
 
 ============dump of hbase===========================
-echo "scan 'WPTRaw', TIMERANGE=>[1531074600000,1531679400000], COLUMN=>['r:gL3','r:gL4','r:routeHolderList']" | hbase shell > dump2.csv
+echo "scan 'student', TIMERANGE=>[1531074600000,1531679400000], COLUMN=>['r:gL3','r:gL4','r:routeHolderList']" | hbase shell > dump2.csv
 
 ============column value filter======================
-scan '', { COLUMNS => 'r:vCallToken', FILTER => "ValueFilter( =, 'binaryprefix:hold-unhold-test1' )" }
+scan 'student', { COLUMNS => 'r:vCallToken', FILTER => "ValueFilter( =, 'binaryprefix:hold-unhold-test1' )" }
 
 ============ragex value filter=======================
-scan 'ViberBase', { FILTER => "RowFilter(=, 'regexstring:5junecall')" }
+scan 'student', { FILTER => "RowFilter(=, 'regexstring:5junecall')" }
 
 ============startrow endrow filter===================
-scan 'mytable', {STARTROW => 'abc', ENDROW => 'abd'}
+scan 'student', {STARTROW => 'abc', ENDROW => 'abd'}
 
 ============export data from hbase table===============
 hbase org.apache.hadoop.hbase.mapreduce.Export  -Dmapreduce.job.queuename=ingest  "TableName" "/user/userapp/path"
