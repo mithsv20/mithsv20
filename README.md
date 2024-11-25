@@ -5,7 +5,7 @@
 🌟 About Me
 ------------
 
-I am a passionate Data Engineer with 6.5+ years of hands-on experience in building and managing data pipelines, leveraging a range of tools and technologies such as:
+I am a passionate Data Engineer with 6.8+ years of hands-on experience in building and managing data pipelines, leveraging a range of tools and technologies such as:
 
 Apache Spark & PySpark: Proficient in designing and optimizing large-scale data processing pipelines.
 
